@@ -1,0 +1,26 @@
+Use SQLAlchemy to create a sqlite database named system/genai/temp/model.sqlite  .
+
+The purpose of the database is: Create a system with customers, orders, items and products.
+
+Include a notes field for orders.
+
+Use LogicBank to create declare_logic() to enforce the Check Credit requirement (do not generate check constraints):
+1. Customer.balance <= credit_limit
+2. Customer.balance = Sum(Order.amount_total where date_shipped is null)
+3. Order.amount_total = Sum(Item.amount)
+4. Item.amount = quantity * unit_price
+5. Store the Item.unit_price as a copy from Product.unit_price
+
+Create at least 12 tables.
+
+Hints: use autonum keys (for all tables - including for link/join/junction/intersection tables), allow nulls, foreign keys, no check constraints.
+If you choose to use a date, only use python datetime datatype.
+Remember that SQLite DateTime type only accepts Python datetime and date objects as input, this means you can not enter string attributes where a date or datetime object is expected.Provide a short description of each table. Include the description in each data model class docstring, prefixed with 'description: '. 
+Don't use python DECIMAL type.
+Don't install additional packages.
+Don't use the faker pip package.
+
+Create at least 48 rows of sample data: create at least one instance for every sqlalchemy class.
+Add some relationships and use foreign key columns instead of relationship names for the data inserts.
+Do not print the test data.
+Be sure to initialize derived attributes, but do not rely on LogicBank.
